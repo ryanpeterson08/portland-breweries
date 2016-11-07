@@ -1,9 +1,9 @@
 {
 "type": "FeatureCollection",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
-                                                                                
+
 "features": [
-{ "type": "Feature", "properties": { "Brewery": "13 Virtues Brewing Co", "Address": "6410 SE Milwaukie Ave Portland OR 97202" }, "geometry": { "type": "Point", "coordinates": [ -122.6487198, 45.4762459 ] } },
+{ "type": "Feature", "properties": { "Brewery": "13 Virtues Brewing Co", "Address": "6410 SE Milwaukie Ave Portland OR 97202", "href": "http://13virtuesbrewing.com/" }, "geometry": { "type": "Point", "coordinates": [ -122.6487198, 45.4762459 ] } },
 { "type": "Feature", "properties": { "Brewery": "Alameda Brewhouse", "Address": "4765 NE Fremont Portland OR 97213" }, "geometry": { "type": "Point", "coordinates": [ -122.6136475, 45.5485001 ] } },
 { "type": "Feature", "properties": { "Brewery": "Alameda Brewing Company", "Address": "4736 SE 24th Portland OR 97202" }, "geometry": { "type": "Point", "coordinates": [ -122.641443, 45.4885503 ] } },
 { "type": "Feature", "properties": { "Brewery": "Ambacht Brewing Co", "Address": "1060 NE 25th Ave-Ste B Hillsboro OR 97124" }, "geometry": { "type": "Point", "coordinates": [ -122.95623, 45.53268 ] } },
