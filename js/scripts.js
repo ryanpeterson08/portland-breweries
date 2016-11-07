@@ -3,22 +3,30 @@ var createMap = function(){
   return breweryMap;
 };
 
+var addPubsToMap = function(data, map){
+  var brewPubs = L.geoJson(data, {
+    onEachFeature: function(feature, layer) {
+      var popupText = feature.properties.Brewery
+      layer.bindPopup(popupText); }
+  });
+  brewPubs.addTo(map);
+}
+
 $(document).ready(function(){
 
+  var mapInstance = createMap();
 
-
-  L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.{ext}', {
+  L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.{ext}', {
 	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 	subdomains: 'abcd',
 	minZoom: 0,
 	maxZoom: 20,
 	ext: 'png'
-}).addTo(createMap());
+}).addTo(mapInstance);
 
-$.getJSON("data/breweries_final.geojson", function(pub){
-  var brewPubs = L.geoJson(pub).addTo(createMap());
-})
-
+  $.getJSON("data/breweries_final.geojson", function(pub){
+    addPubsToMap(pub, mapInstance);
+  });
 
 
 });
