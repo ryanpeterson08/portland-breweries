@@ -9,7 +9,7 @@ var addPubsToMap = function(data, map){
       var breweryName = feature.properties.Brewery
       var breweryAddress = feature.properties.Address
       var breweryLink = feature.properties.Website
-      layer.bindPopup("<h5>" + breweryName + "</h5><br><p>" + breweryAddress + "</p><br><a href'" + breweryLink + "'>" + breweryLink + "</a>" ); }
+      layer.bindPopup("<h5>" + breweryName + "</h5><p>" + breweryAddress + "</p><a href='" + breweryLink + "'>" + breweryLink + "</a>" ); }
   });
   brewPubs.addTo(map);
 }
