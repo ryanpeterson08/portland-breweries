@@ -6,8 +6,10 @@ var createMap = function(){
 var addPubsToMap = function(data, map){
   var brewPubs = L.geoJson(data, {
     onEachFeature: function(feature, layer) {
-      var popupText = feature.properties.Brewery
-      layer.bindPopup(popupText); }
+      var breweryName = feature.properties.Brewery
+      var breweryAddress = feature.properties.Address
+      var breweryLink = feature.properties.Website
+      layer.bindPopup("<h5>" + breweryName + "</h5><br><p>" + breweryAddress + "</p><br><a href'" + breweryLink + "'>" + breweryLink + "</a>" ); }
   });
   brewPubs.addTo(map);
 }
