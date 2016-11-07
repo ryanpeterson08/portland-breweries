@@ -3,29 +3,41 @@ var createMap = function(){
   return breweryMap;
 };
 
+var pubIcon = L.icon({
+    iconUrl: 'img/pubIcon.png',
+    iconSize: [60, 50]
+});
+
 var addPubsToMap = function(data, map){
   var brewPubs = L.geoJson(data, {
     onEachFeature: function(feature, layer) {
-      var popupText = feature.properties.Brewery
+      var popupText = feature.properties.Brewery + "<br>" + feature.properties.Address
       layer.bindPopup(popupText); }
   });
-  brewPubs.addTo(map);
+  return brewPubs;
 }
 
+var makeCluster = function(data, map){
+  var markers = L.markerClusterGroup();
+  markers.addLayer(data);
+  map.addLayer(markers);
+}
+
+
+
+//Backend
 $(document).ready(function(){
 
   var mapInstance = createMap();
 
   L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.{ext}', {
 	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-	subdomains: 'abcd',
-	minZoom: 0,
-	maxZoom: 20,
 	ext: 'png'
 }).addTo(mapInstance);
 
   $.getJSON("data/breweries_final.geojson", function(pub){
-    addPubsToMap(pub, mapInstance);
+    var pubs = addPubsToMap(pub, mapInstance);
+    makeCluster(pubs, mapInstance)
   });
 
 
