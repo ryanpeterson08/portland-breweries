@@ -18,7 +18,12 @@ var addPubsToMap = function(data, map){
 }
 
 var makeCluster = function(data, map){
-  var markers = L.markerClusterGroup();
+  var markers = L.markerClusterGroup({
+    iconCreateFunction: function(cluster){
+      return pubIcon;
+    },
+    showCoverageOnHover: false
+  });
   markers.addLayer(data);
   map.addLayer(markers);
 }
