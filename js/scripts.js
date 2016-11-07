@@ -12,7 +12,11 @@ var addPubsToMap = function(data, map){
   var brewPubs = L.geoJson(data, {
     onEachFeature: function(feature, layer) {
       var popupText = feature.properties.Brewery + "<br>" + feature.properties.Address
-      layer.bindPopup(popupText); }
+      layer.bindPopup(popupText);
+    },
+    pointToLayer: function(feature, latlng){
+      return L.marker(latlng, {icon: pubIcon});
+    }
   });
   return brewPubs;
 }
