@@ -133,6 +133,12 @@ body {
 /*
  * Affix and center
  */
+@media (max-width: 768px) {
+  #mapid {
+    height: 400px;
+  }
+
+}
 
 @media (min-width: 768px) {
   /* Pull out the header and footer */
@@ -154,6 +160,10 @@ body {
   .cover-container {
     width: 100%; /* Must be percentage or pixels for horizontal alignment */
   }
+
+  #mapid {
+    height: 800px;
+  }
 }
 
 @media (min-width: 992px) {
@@ -162,10 +172,10 @@ body {
   .cover-container {
     width: 700px;
   }
+  #mapid {
+    height: 900px;
 }
 
-#mapid {
-  height: 1000px;
 
 }
 
