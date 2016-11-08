@@ -10,9 +10,15 @@ var pubIcon = L.icon({
     iconSize: [60, 50]
 });
 
+var searchCtrl = L.control.fuseSearch({
+  position: 'topright'
+});
+
 var addPubsToMap = function(data, map){
+  searchCtrl.indexFeatures(data, ['Brewery', 'Address']);
   var brewPubs = L.geoJson(data, {
     onEachFeature: function(feature, layer) {
+      feature.layer = layer;
       var breweryName = feature.properties.Brewery
       var breweryAddress = feature.properties.Address
       var breweryLink = feature.properties.Website
@@ -42,6 +48,8 @@ var makeCluster = function(data, map){
 $(document).ready(function(){
 
   var mapInstance = createMap();
+
+  mapInstance.addControl(searchCtrl);
 
   L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.{ext}', {
 	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
