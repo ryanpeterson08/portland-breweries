@@ -35,7 +35,7 @@ var makeCluster = function(data, map){
   var markers = L.markerClusterGroup({
     iconCreateFunction: function(cluster){
       return pubIcon;
-    },
+    }, disableClusteringAtZoom: 14,
     showCoverageOnHover: false
   });
   markers.addLayer(data);
