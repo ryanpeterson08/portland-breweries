@@ -1,21 +1,21 @@
 //Backend
+var pubIcon = L.icon({
+  iconUrl: 'img/pubIcon.png',
+  iconSize: [60, 50]
+});
+
+var searchCtrl = L.control.fuseSearch({
+  position: 'topright',
+  placeholder: 'Pub'
+});
 
 var createMap = function(){
   var breweryMap = L.map('mapid').setView([45.523171, -122.667256], 10);
   return breweryMap;
 };
 
-var pubIcon = L.icon({
-    iconUrl: 'img/pubIcon.png',
-    iconSize: [60, 50]
-});
 
-var searchCtrl = L.control.fuseSearch({
-  position: 'topright'
-});
-
-var addPubsToMap = function(data, map){
-  searchCtrl.indexFeatures(data, ['Brewery', 'Address']);
+var addPubsToMap = function(data){
   var brewPubs = L.geoJson(data, {
     onEachFeature: function(feature, layer) {
       feature.layer = layer;
@@ -48,7 +48,6 @@ var makeCluster = function(data, map){
 $(document).ready(function(){
 
   var mapInstance = createMap();
-
   mapInstance.addControl(searchCtrl);
 
   L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.{ext}', {
@@ -57,9 +56,9 @@ $(document).ready(function(){
 }).addTo(mapInstance);
 
   $.getJSON("data/breweries_final.geojson", function(pub){
-    var pubs = addPubsToMap(pub, mapInstance);
+    var pubs = addPubsToMap(pub);
+    searchCtrl.indexFeatures(pub, ['Brewery', 'Address']);
     makeCluster(pubs, mapInstance);
   });
-
 
 });
