@@ -1,0 +1,32 @@
+<input type="checkbox" name="visited-pubs" value="0"> 13 Virtues Brewing Co<br>
+<input type="checkbox" name="visited-pubs" value="1"> Alameda Brewhouse<br>
+<input type="checkbox" name="visited-pubs" value="2"> Alameda Brewing Company<br>
+<input type="checkbox" name="visited-pubs" value="3"> Ambacht Brewing Co<br>
+<input type="checkbox" name="visited-pubs" value="4"> Back Pedal Brewing<br>
+<input type="checkbox" name="visited-pubs" value="5"> Baerlic Brewing Co<br>
+<input type="checkbox" name="visited-pubs" value="6"> Base Camp Brewing Company<br>
+<input type="checkbox" name="visited-pubs" value="7"> Bent Shovel Brewing Co<br>
+<input type="checkbox" name="visited-pubs" value="8"> Boring Brewing<br>
+<input type="checkbox" name="visited-pubs" value="9"> Breakside Brewery<br>
+
+<input type="checkbox" name="visited-pubs" value="10"> Breakside Taproom & Brewery<br>
+<input type="checkbox" name="visited-pubs" value="11"> Bridgeport Brewpub<br>
+<input type="checkbox" name="visited-pubs" value="12"> Broadway Grill&Brewery<br>
+<input type="checkbox" name="visited-pubs" value="13"> BTU Brasserie<br>
+<input type="checkbox" name="visited-pubs" value="14"> Buckman Botanical Brewery<br>
+<input type="checkbox" name="visited-pubs" value="15"> Burnside Brewing Company<br>
+<input type="checkbox" name="visited-pubs" value="16"> Cascade Brewing<br>
+<input type="checkbox" name="visited-pubs" value="17"> Cascade Brewing / Raccoon Lodge and Brewpub<br>
+<input type="checkbox" name="visited-pubs" value="18"> Coin Toss Brewing Company<br>
+<input type="checkbox" name="visited-pubs" value="19"> Columbia River Brewing Company<br>
+
+<input type="checkbox" name="visited-pubs" value="20"> Commons Brewery<br>
+<input type="checkbox" name="visited-pubs" value="21"> Culmination Brewing<br>
+<input type="checkbox" name="visited-pubs" value="22"> Alameda Brewing Company<br>
+<input type="checkbox" name="visited-pubs" value="23"> Ambacht Brewing Co<br>
+<input type="checkbox" name="visited-pubs" value="24"> Back Pedal Brewing<br>
+<input type="checkbox" name="visited-pubs" value="25"> Baerlic Brewing Co<br>
+<input type="checkbox" name="visited-pubs" value="26"> Base Camp Brewing Company<br>
+<input type="checkbox" name="visited-pubs" value="27"> Bent Shovel Brewing Co<br>
+<input type="checkbox" name="visited-pubs" value="28"> Boring Brewing<br>
+<input type="checkbox" name="visited-pubs" value="29"> Breakside Brewery<br>
