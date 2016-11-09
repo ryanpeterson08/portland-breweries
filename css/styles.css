@@ -186,3 +186,7 @@ body {
 h1  {
   font-size: 50px;
 }
+
+#filter-button {
+  text-align: left;
+}

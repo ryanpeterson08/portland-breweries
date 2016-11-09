@@ -75,26 +75,24 @@ checkedArray = [];
          checkedArray.push($(this).val())
        })
 
-       for (var i = 0; i < 100; i++) {
-         pub.features[i].Visited = true;
-       }
 
       // pub.features.forEach(function(each){
+      //   if (each.properties.)
       //    each.properties.Visited = true;
       //    console.log(each);
       //  });
 
-      // checkedArray.forEach(function(each){
-      //   pub.features[each].Visited = true;
-      // })
+      checkedArray.forEach(function(each){
+        pub.features[each].properties.Visited = true;
+      })
 
       console.log(pub);
       mapInstance.removeLayer(pubs);
       pubs = addPubsToMap(pub);
+      mapInstance.addLayer(pubs)
 
     });
       $("#new-points").click(function(){
-      mapInstance.addLayer(pubs)
       console.log(pub);
 
     })
