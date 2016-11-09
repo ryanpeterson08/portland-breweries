@@ -6,12 +6,15 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.0.0/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="js/leaflet-fusesearch-master/src/leaflet.fusesearch.css" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/L.Control.Locate.css" />
     <link href="css/styles.css" rel="stylesheet" type="text/css">
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet.markercluster@1.0.0/dist/leaflet.markercluster.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/2.5.0/fuse.min.js"></script>
     <script src="js/leaflet-fusesearch-master/src/leaflet.fusesearch.js"></script>
+    <script src="js/L.Control.Locate.js"></script>
     <script src="js/scripts.js"></script>
     <title>Portland Breweries</title>
   </head>
@@ -35,7 +38,34 @@
           <div class="container" id="map-container">
              <div id="mapid"></div>
           </div>
+        <div class="checklist">
+          <h2>Check Off the Breweries You've Visited</h2>
+          <form id="filter-button">
+            <button class="btn btn-lg btn-default" type="submit">Filter</button>
+            <a href="brew-map.html"><button id="new-points" class="btn btn-lg btn-default" type="button">Reset</button></a><br>
+            <div class="form-group container">
+              <div class="row">
+                <div class="col-md-3" id="column-1">
+
+                </div>
+
+                <div class="col-md-3" id="column-2">
+
+                </div>
+
+                <div class="col-md-3" id="column-3">
+
+                </div>
+
+                <div class="col-md-3" id="column-4">
+
+                </div>
+              </div>
+            </div>
+
+          </form>
         </div>
+      </div>
     </div>
   </body>
 </html>

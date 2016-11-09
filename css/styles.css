@@ -143,13 +143,10 @@ body {
 @media (min-width: 768px) {
   /* Pull out the header and footer */
   .masthead {
-    position: fixed;
+    /*position: fixed;*/
     top: 0;
   }
-  .mastfoot {
-    position: fixed;
-    bottom: 0;
-  }
+
   /* Start the vertical centering */
   .site-wrapper-inner {
     vertical-align: middle;
@@ -159,6 +156,11 @@ body {
   .mastfoot,
   .cover-container {
     width: 100%; /* Must be percentage or pixels for horizontal alignment */
+
+  }
+
+  #index-margin {
+    margin-bottom: 30%;
   }
 
   #mapid {
@@ -170,12 +172,15 @@ body {
   .masthead,
   .mastfoot,
   .cover-container {
-    width: 700px;
+  width: 800px;
+
   }
   #mapid {
     height: 900px;
-}
-
+  }
+  #index-margin {
+    margin-bottom: 30%;
+  }
 
 }
 
@@ -187,12 +192,18 @@ h1  {
   font-size: 50px;
 }
 
+
 /*Beer 1101 page*/
 h3 {
-  text-align: center;
   font-family: italic:
 }
 
-.text {
-  font-weight: bold;
+.bg-info {
+  font-weight: bold:
+}
+
+.form-group {
+
+  text-align: left;
+
 }
