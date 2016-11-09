@@ -5,8 +5,8 @@ var pubIcon = L.icon({
 });
 
 var emptyIcon = L.icon({
-  iconUrl: 'img/pubIcon-empty.png',
-  iconSize: [60, 50]
+  iconUrl: 'img/flag.png',
+  iconSize: [30, 50]
 });
 
 var searchCtrl = L.control.fuseSearch({
@@ -63,21 +63,27 @@ $(document).ready(function(){
 
 
   //Get map tiles and add to mapInstance
+  var stamenToner =  L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.{ext}', {
+    attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    ext: 'png'
+  }).addTo(mapInstance);
 
-  var osmTransport = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-	maxZoom: 19,
-	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  var darkMatter = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+	subdomains: 'abcd'
   });
 
-  var stamenToner =  L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.{ext}', {
+
+  var stamenTerrain = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.{ext}', {
 	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 	ext: 'png'
-  }).addTo(mapInstance);
+  });
 
   //get geoJSON file and call addPubsToMap() and makeCluster() to draw points on map
   var basemaps = {
     "Stamen Toner":stamenToner,
-    "Basic Style":osmTransport
+    "Stamen Terrain":stamenTerrain,
+    " Carto DB Dark":darkMatter
   }
 
   L.control.layers(basemaps).addTo(mapInstance);
@@ -91,16 +97,16 @@ $(document).ready(function(){
     //Loop through geoJSON and append corrisponding checklist items to HTML
     pub.features.forEach(function(each) {
       if (i < 30) {
-        $("#column-1").append("<input type='checkbox' name='visited-pubs' value='" + i + "'>" + each.properties.Brewery + "<br>")
+        $("#column-1").append("<input type='checkbox' name='visited-pubs' value='" + i + "'> " + each.properties.Brewery + "<br>")
         i++;
       } else if (i < 60) {
-        $("#column-2").append("<input type='checkbox' name='visited-pubs' value='" + i + "'>" + each.properties.Brewery + "<br>")
+        $("#column-2").append("<input type='checkbox' name='visited-pubs' value='" + i + "'> " + each.properties.Brewery + "<br>")
         i++;
       } else if (i < 90) {
-        $("#column-3").append("<input type='checkbox' name='visited-pubs' value='" + i + "'>" + each.properties.Brewery + "<br>")
+        $("#column-3").append("<input type='checkbox' name='visited-pubs' value='" + i + "'> " + each.properties.Brewery + "<br>")
         i++;
       } else {
-        $("#column-4").append("<input type='checkbox' name='visited-pubs' value='" + i + "'>" + each.properties.Brewery + "<br>")
+        $("#column-4").append("<input type='checkbox' name='visited-pubs' value='" + i + "'> " + each.properties.Brewery + "<br>")
         i++;
       }
     });
