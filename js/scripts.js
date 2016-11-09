@@ -19,7 +19,7 @@ var createMap = function(){
   return breweryMap;
 };
 
-
+//function parses geoJSON and creats a map layer with corresponding marker points and correct icons
 var addPubsToMap = function(data){
   var brewPubs = L.geoJson(data, {
     onEachFeature: function(feature, layer) {
@@ -28,14 +28,7 @@ var addPubsToMap = function(data){
       var breweryAddress = feature.properties.Address
       var breweryLink = feature.properties.Website
       layer.bindPopup("<h5>" + breweryName + "</h5><br><p>" + breweryAddress + "</p><br><a href='" + breweryLink + "'>" + breweryLink + "</a>" );
-    }, //filter: function(feature) {
-    //   if (feature.properties.Visited === true) {
-    //     return false;
-    //   }
-    //     return true;
-    //
-    // },
-    pointToLayer: function(feature, latlng){
+    }, pointToLayer: function(feature, latlng){
       if (feature.properties.Visited === true) {
         return L.marker(latlng, {icon: emptyIcon});
       } else {
@@ -46,6 +39,7 @@ var addPubsToMap = function(data){
   return brewPubs;
 }
 
+//Clusters icon at different zoom levels
 var makeCluster = function(data, map){
   var markers = L.markerClusterGroup({
     iconCreateFunction: function(cluster){
@@ -54,7 +48,6 @@ var makeCluster = function(data, map){
     showCoverageOnHover: false
   });
   markers.addLayer(data);
-  //map.addLayer(markers);
   return markers;
 }
 
@@ -67,18 +60,20 @@ $(document).ready(function(){
   var pubCluster;
   mapInstance.addControl(searchCtrl);
 
+  //Get map tiles and add to mapInstance
   L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.{ext}', {
 	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 	ext: 'png'
   }).addTo(mapInstance);
 
+  //get geoJSON file and call addPubsToMap() and makeCluster() to draw points on map
   $.getJSON("data/breweries_final.geojson", function(pub){
     var pubs = addPubsToMap(pub);
     searchCtrl.indexFeatures(pub, ['Brewery', 'Address']);
-    //mapInstance.addLayer(pubs);
     pubCluster = makeCluster(pubs, mapInstance);
     mapInstance.addLayer(pubCluster);
 
+    //Loop through geoJSON and append corrisponding checklist items to HTML
     pub.features.forEach(function(each) {
       if (i < 30) {
         $("#column-1").append("<input type='checkbox' name='visited-pubs' value='" + i + "'>" + each.properties.Brewery + "<br>")
@@ -95,13 +90,14 @@ $(document).ready(function(){
       }
     });
 
-
+    //When user clicks filter button, get filtered items and add to checkeArray
     $("#filter-button").submit(function(event){
       event.preventDefault();
       $("input:checkbox[name=visited-pubs]:checked").each(function(){
          checkedArray.push($(this).val())
        })
-       console.log(checkedArray);
+
+      //Setting object propertie Visted: to true for every user selection
       checkedArray.forEach(function(each){
         pub.features[each].properties.Visited = true;
       })
@@ -113,16 +109,5 @@ $(document).ready(function(){
       mapInstance.addLayer(pubCluster);
 
     });
-      $("#new-points").click(function(){
-      mapInstance.removeLayer(pubCluster);
-      pub.features.forEach(function(each){
-         each.properties.Visited = false;
-       });
-      pubs = addPubsToMap(pub);
-      pubCluster =  makeCluster(pubs, mapInstance);
-      mapInstance.addLayer(pubCluster);
-
-
-    })
   });
 });
