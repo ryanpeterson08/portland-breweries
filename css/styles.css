@@ -156,6 +156,11 @@ body {
   .mastfoot,
   .cover-container {
     width: 100%; /* Must be percentage or pixels for horizontal alignment */
+
+  }
+
+  #index-margin {
+    margin-bottom: 30%;
   }
 
   #mapid {
@@ -167,12 +172,15 @@ body {
   .masthead,
   .mastfoot,
   .cover-container {
-    width: 700px;
+  width: 800px;
+
   }
   #mapid {
     height: 900px;
-}
-
+  }
+  #index-margin {
+    margin-bottom: 30%;
+  }
 
 }
 
