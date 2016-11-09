@@ -23,6 +23,12 @@ var addPubsToMap = function(data){
       var breweryAddress = feature.properties.Address
       var breweryLink = feature.properties.Website
       layer.bindPopup("<h5>" + breweryName + "</h5><br><p>" + breweryAddress + "</p><br><a href='" + breweryLink + "'>" + breweryLink + "</a>" );
+    }, filter: function(feature) {
+      if (feature.properties.Visited === true) {
+        return false;
+      }
+        return true;
+
     },
     pointToLayer: function(feature, latlng){
       return L.marker(latlng, {icon: pubIcon});
@@ -42,11 +48,10 @@ var makeCluster = function(data, map){
   map.addLayer(markers);
 }
 
-
-
 //Frontend
 $(document).ready(function(){
 
+  var pub;
   var mapInstance = createMap();
   mapInstance.addControl(searchCtrl);
 
@@ -55,10 +60,43 @@ $(document).ready(function(){
 	ext: 'png'
 }).addTo(mapInstance);
 
+checkedArray = [];
   $.getJSON("data/breweries_final.geojson", function(pub){
     var pubs = addPubsToMap(pub);
     searchCtrl.indexFeatures(pub, ['Brewery', 'Address']);
-    makeCluster(pubs, mapInstance);
-  });
+    mapInstance.addLayer(pubs);
+    //makeCluster(pubs, mapInstance);
 
+
+
+    $(".filter-button").submit(function(event){
+      event.preventDefault();
+      $("input:checkbox[name=visited-pubs]:checked").each(function(){
+         checkedArray.push($(this).val())
+       })
+
+       for (var i = 0; i < 100; i++) {
+         pub.features[i].Visited = true;
+       }
+
+      // pub.features.forEach(function(each){
+      //    each.properties.Visited = true;
+      //    console.log(each);
+      //  });
+
+      // checkedArray.forEach(function(each){
+      //   pub.features[each].Visited = true;
+      // })
+
+      console.log(pub);
+      mapInstance.removeLayer(pubs);
+      pubs = addPubsToMap(pub);
+
+    });
+      $("#new-points").click(function(){
+      mapInstance.addLayer(pubs)
+      console.log(pub);
+
+    })
+  });
 });
