@@ -59,14 +59,29 @@ $(document).ready(function(){
   var mapInstance = createMap();
   var pubCluster;
   mapInstance.addControl(searchCtrl);
+  L.control.locate().addTo(mapInstance);
+
 
   //Get map tiles and add to mapInstance
-  L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.{ext}', {
+
+  var osmTransport = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	maxZoom: 19,
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  });
+
+  var stamenToner =  L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.{ext}', {
 	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 	ext: 'png'
   }).addTo(mapInstance);
 
   //get geoJSON file and call addPubsToMap() and makeCluster() to draw points on map
+  var basemaps = {
+    "Stamen Toner":stamenToner,
+    "Basic Style":osmTransport
+  }
+
+  L.control.layers(basemaps).addTo(mapInstance);
+
   $.getJSON("data/breweries_final.geojson", function(pub){
     var pubs = addPubsToMap(pub);
     searchCtrl.indexFeatures(pub, ['Brewery', 'Address']);
