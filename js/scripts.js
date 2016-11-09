@@ -4,6 +4,11 @@ var pubIcon = L.icon({
   iconSize: [60, 50]
 });
 
+var emptyIcon = L.icon({
+  iconUrl: 'img/pubIcon-empty.png',
+  iconSize: [60, 50]
+});
+
 var searchCtrl = L.control.fuseSearch({
   position: 'topright',
   placeholder: 'Pub'
@@ -23,15 +28,19 @@ var addPubsToMap = function(data){
       var breweryAddress = feature.properties.Address
       var breweryLink = feature.properties.Website
       layer.bindPopup("<h5>" + breweryName + "</h5><br><p>" + breweryAddress + "</p><br><a href='" + breweryLink + "'>" + breweryLink + "</a>" );
-    }, filter: function(feature) {
-      if (feature.properties.Visited === true) {
-        return false;
-      }
-        return true;
-
-    },
+    }, //filter: function(feature) {
+    //   if (feature.properties.Visited === true) {
+    //     return false;
+    //   }
+    //     return true;
+    //
+    // },
     pointToLayer: function(feature, latlng){
-      return L.marker(latlng, {icon: pubIcon});
+      if (feature.properties.Visited === true) {
+        return L.marker(latlng, {icon: emptyIcon});
+      } else {
+        return L.marker(latlng, {icon: pubIcon});
+      }
     }
   });
   return brewPubs;
@@ -41,7 +50,7 @@ var makeCluster = function(data, map){
   var markers = L.markerClusterGroup({
     iconCreateFunction: function(cluster){
       return pubIcon;
-    }, disableClusteringAtZoom: 14,
+    }, disableClusteringAtZoom: 13,
     showCoverageOnHover: false
   });
   markers.addLayer(data);
@@ -105,7 +114,7 @@ $(document).ready(function(){
 
     });
       $("#new-points").click(function(){
-
+      mapInstance.removeLayer(pubCluster);
       pub.features.forEach(function(each){
          each.properties.Visited = false;
        });
