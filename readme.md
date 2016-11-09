@@ -34,12 +34,16 @@ No known bugs
 ## Support and contact details
 
 ryanpeterson08@gmail.com
+cclifford82@gmail.com
+hbfairless@gmail.com
+getro89@gmail.com
 
 ## Technologies Used
 
 * HTML
 * CSS
 * Javascript
+* jQuery
 * geoJson - is an open standard format designed for representing simple geographical features, along with their non-spatial attributes, based on JavaScript Object Notation
 * Leaflet - is a widely used open source JavaScript library used to build web mapping applications. It supports most mobile and desktop platforms, supporting HTML5 and CSS3
 

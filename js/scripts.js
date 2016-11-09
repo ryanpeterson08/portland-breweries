@@ -27,7 +27,7 @@ var addPubsToMap = function(data){
       var breweryName = feature.properties.Brewery
       var breweryAddress = feature.properties.Address
       var breweryLink = feature.properties.Website
-      layer.bindPopup("<h5>" + breweryName + "</h5><br><p>" + breweryAddress + "</p><br><a href='" + breweryLink + "'>" + breweryLink + "</a>" );
+      layer.bindPopup("<h5>" + breweryName + "</h5><br><p>" + breweryAddress + "</p><br><a href='" + breweryLink + "' target='_blank'>" + breweryLink + "</a>" );
     }, pointToLayer: function(feature, latlng){
       if (feature.properties.Visited === true) {
         return L.marker(latlng, {icon: emptyIcon});
