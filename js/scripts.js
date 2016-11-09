@@ -55,6 +55,7 @@ $(document).ready(function(){
   var i = 0
   var checkedArray = [];
   var mapInstance = createMap();
+  var pubCluster;
   mapInstance.addControl(searchCtrl);
 
   L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.{ext}', {
@@ -66,7 +67,7 @@ $(document).ready(function(){
     var pubs = addPubsToMap(pub);
     searchCtrl.indexFeatures(pub, ['Brewery', 'Address']);
     //mapInstance.addLayer(pubs);
-    var pubCluster = makeCluster(pubs, mapInstance);
+    pubCluster = makeCluster(pubs, mapInstance);
     mapInstance.addLayer(pubCluster);
 
     pub.features.forEach(function(each) {
@@ -91,7 +92,7 @@ $(document).ready(function(){
       $("input:checkbox[name=visited-pubs]:checked").each(function(){
          checkedArray.push($(this).val())
        })
-
+       console.log(checkedArray);
       checkedArray.forEach(function(each){
         pub.features[each].properties.Visited = true;
       })
@@ -99,17 +100,19 @@ $(document).ready(function(){
       //remove all pub icons then replace with with pubs that have Visited: false
       mapInstance.removeLayer(pubCluster);
       pubs = addPubsToMap(pub);
-      var newPubCluster =  makeCluster(pubs, mapInstance);
-      mapInstance.addLayer(newPubCluster);
-
+      pubCluster =  makeCluster(pubs, mapInstance);
+      mapInstance.addLayer(pubCluster);
 
     });
       $("#new-points").click(function(){
+
       pub.features.forEach(function(each){
          each.properties.Visited = false;
        });
       pubs = addPubsToMap(pub);
-      mapInstance.addLayer(pubs)
+      pubCluster =  makeCluster(pubs, mapInstance);
+      mapInstance.addLayer(pubCluster);
+
 
     })
   });
