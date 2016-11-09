@@ -90,7 +90,7 @@ $(document).ready(function(){
 
   $.getJSON("data/breweries_final.geojson", function(pub){
     var pubs = addPubsToMap(pub);
-    searchCtrl.indexFeatures(pub, ['Brewery', 'Address']);
+    searchCtrl.indexFeatures(pub, ['Brewery', 'Address', 'Amenities']);
     pubCluster = makeCluster(pubs, mapInstance);
     mapInstance.addLayer(pubCluster);
 

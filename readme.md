@@ -18,7 +18,7 @@ This site uses the Leaflet API to create a map of breweries located in the great
 
 * Page loads map with pub data on it - presented in cluster format
   * As user zooms in clusters disperse, until certain zoom limit where everything de-clusters
-* Users can search for brewery by clicking on spyglass in right hand cover-container
+* Users can search for brewery, address, or amenity(if pub has happy hour, a patio, or participates in Zwickelmania) by clicking on spyglass in right hand cover-container  
   * Search works best at zoom level where icons are no longer clustered
   * Clicking on brewery in search panel will zoom map to location and open popup
 * Users can use location finder in left corner of map, to get there current location
