@@ -207,3 +207,15 @@ h3 {
   text-align: left;
 
 }
+
+.bg-info {
+  background-color: transparent;
+}
+
+.jumbotron {
+  background-color: transparent;
+}
+
+.well {
+  background-color: transparent;
+}
