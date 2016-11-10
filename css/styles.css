@@ -219,3 +219,7 @@ h3 {
 .well {
   background-color: transparent;
 }
+
+li {
+  list-style-type: none;
+}
